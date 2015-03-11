@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Senku</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="game_over">The game is over!</string>
+    <string name="record">You have a new record!</string>
+    <string name="title_activity_score_screen">ScoreScreen</string>
+    <string name="action_settings">Restart</string>
+    <string name="action_random">Random</string>
+    <string name="action_undo">Undo</string>
+    <string name="action_scores">Best Scores</string>
+</resources>
