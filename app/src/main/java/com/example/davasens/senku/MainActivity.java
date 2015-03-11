@@ -28,8 +28,6 @@ import java.util.TreeSet;
  *      - Demo
  *      - Mas layouts: cruz, circulo, rombo...
  *      - Pulbish in Git
- *      -
- *      -
  *
  */
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
