@@ -3,12 +3,14 @@
     <item android:state_checked="true" android:state_window_focused="false"
         android:drawable="@drawable/ball_dark_green" />
     <item android:state_checked="true" android:state_pressed="true"
-        android:drawable="@drawable/ball_dark_green" />
+        android:drawable="@drawable/ball_light_green" />
     <item android:state_checked="false" android:state_pressed="true"
         android:drawable="@drawable/hole_alpha" />
     <item android:state_checked="false" android:state_pressed="false"
         android:drawable="@drawable/hole_alpha" />
     <item android:state_checked="true" android:state_focused="true"
+    android:drawable="@drawable/ball_light_green" />
+    <item android:state_checked="true" android:state_selected="true"
         android:drawable="@drawable/ball_dark_green" />
     <item android:state_checked="false" android:state_focused="true"
         android:drawable="@drawable/hole_alpha"  />

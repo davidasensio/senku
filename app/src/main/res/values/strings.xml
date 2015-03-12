@@ -9,4 +9,13 @@
     <string name="action_random">Random</string>
     <string name="action_undo">Undo</string>
     <string name="action_scores">Best Scores</string>
+
+    <!--Real banner
+    -->
+    <string name="banner_ad_unit_id">ca-app-pub-8877880174338104/1250036072</string>
+
+    <!-- Test banner
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    -->
+
 </resources>

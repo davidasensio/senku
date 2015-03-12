@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -28,13 +29,12 @@
                 android:layout_height="40dp"
                 android:id="@+id/f1"
                 android:checked="true"
-                android:focusable="false"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_vertical|center_horizontal"
-
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:focusableInTouchMode="true" />
 
 
             <RadioButton
@@ -45,7 +45,7 @@
                 android:id="@+id/f2"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_vertical|center_horizontal"
-
+                android:focusableInTouchMode="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent" />
@@ -57,7 +57,7 @@
                 android:checked="true"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_vertical|center_horizontal"
-
+                android:focusableInTouchMode="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent" />
@@ -70,7 +70,7 @@
             android:layout_weight="0.1"
             android:gravity="center_vertical|center_horizontal"
             android:layout_gravity="center_horizontal"
-            
+
             android:layout_marginTop="30dp">
 
             <RadioButton
@@ -79,6 +79,7 @@
                 android:id="@+id/f4"
                 android:checked="true"
                 android:layout_weight="0"
+                android:focusableInTouchMode="true"
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent" />
 
@@ -90,7 +91,8 @@
 
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -100,7 +102,8 @@
 
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -120,7 +123,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -129,7 +133,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -138,7 +143,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
             <RadioButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -146,7 +152,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -155,7 +162,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -164,7 +172,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
             <RadioButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -173,7 +182,8 @@
                 android:layout_weight="0"
                 android:gravity="center_horizontal"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -192,7 +202,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -201,7 +212,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -210,7 +222,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
             <RadioButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -218,7 +231,11 @@
                 android:checked="false"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true"
+                >
+                <requestFocus/>
+                </RadioButton>
 
             <RadioButton
                 android:layout_width="40dp"
@@ -227,7 +244,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -236,7 +254,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
             <RadioButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -244,7 +263,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -263,7 +283,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -272,7 +293,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -281,7 +303,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
             <RadioButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -289,7 +312,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -298,7 +322,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -307,7 +332,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
             <RadioButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -315,7 +341,8 @@
                 android:checked="true"
                 android:layout_weight="0"
                 android:background="@drawable/custom_radio_button"
-                android:button="@android:color/transparent" />
+                android:button="@android:color/transparent"
+                android:focusableInTouchMode="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -325,7 +352,7 @@
             android:layout_weight="0.1"
             android:gravity="center_vertical|center_horizontal"
             android:layout_gravity="center_horizontal"
-            
+
             android:layout_marginTop="30dp">
 
             <RadioButton
@@ -336,7 +363,8 @@
 
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -345,7 +373,8 @@
                 android:checked="true"
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -355,7 +384,8 @@
 
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:focusableInTouchMode="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -365,7 +395,7 @@
             android:layout_weight="0.1"
             android:gravity="center_vertical|center_horizontal"
             android:layout_gravity="center_horizontal"
-            
+
             android:layout_marginTop="30dp">
 
             <RadioButton
@@ -376,7 +406,8 @@
 
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -386,7 +417,8 @@
 
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:focusableInTouchMode="true" />
 
             <RadioButton
                 android:layout_width="40dp"
@@ -396,9 +428,26 @@
 
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:focusableInTouchMode="true" />
         </LinearLayout>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id"
+            >
+        </com.google.android.gms.ads.AdView>
     </LinearLayout>
+
+    <StackView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stackView" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -430,6 +479,9 @@
             android:textSize="20dp"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
+
+
     </LinearLayout>
+
 
 </RelativeLayout>
