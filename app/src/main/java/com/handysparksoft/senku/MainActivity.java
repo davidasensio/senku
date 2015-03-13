@@ -35,6 +35,8 @@ import java.util.TreeSet;
  */
 public class MainActivity extends ActionBarActivity implements View.OnFocusChangeListener {
 
+    private AdView adView;
+
     static final int SIZE = 7;
     com.handysparksoft.senku.Game game;
     Timer timer;
@@ -57,7 +59,18 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+        adView = (AdView) findViewById(R.id.adView);
+
+//        adView = new AdView(this);
+//        adView.setAdSize(com.google.android.gms.ads.AdSize.BANNER);
+//        adView.setAdUnitId(getString(R.string.banner_ad_unit_id));
+
+        //AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("8DBB3294399A59F966A4B5694A8563CF").build();
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         game = new Game();
         registerListeners();
         setFigureFromGrid();
@@ -67,22 +80,28 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         game.restartTimer();
         scores = getScores();
 
-        AdView mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
     }
 
     @Override
     protected void onPause() {
         timer = null;
         game.pauseTimer();
+        adView.pause();
         super.onPause();
     }
 
     @Override
     protected void onResume() {
-        game.restartTimer();
         super.onResume();
+        game.restartTimer();
+        adView.resume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        adView.destroy();
+        super.onDestroy();
     }
 
     @Override

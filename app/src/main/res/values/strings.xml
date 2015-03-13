@@ -10,12 +10,20 @@
     <string name="action_undo">Undo</string>
     <string name="action_scores">Best Scores</string>
 
-    <!--Real banner
-    -->
+    <!--Real banner1
     <string name="banner_ad_unit_id">ca-app-pub-8877880174338104/1250036072</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8877880174338104/1739230475</string>
+    -->
+    <string name="banner_ad_unit_id">ca-app-pub-8877880174338104/4692696878</string>
+	<!--Real banner2
+    -->
+    <string name="banner_ad_unit_id2">ca-app-pub-8877880174338104/2856036872</string>
 
     <!-- Test banner
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    -->
+	<!--Test banner2
+    <string name="banner_ad_unit_id2">ca-app-pub-3940256099942544/6300978111</string>
     -->
 
 </resources>

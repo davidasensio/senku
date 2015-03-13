@@ -4,7 +4,8 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:gravity="center">
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,19 +18,18 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
+            android:layout_height="42dp"
+            android:layout_weight="0.15"
             android:gravity="center_vertical|center_horizontal"
             android:layout_gravity="center_horizontal"
 
-            android:layout_marginTop="30dp">
+            >
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f1"
                 android:checked="true"
-                android:layout_gravity="center_horizontal"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/custom_radio_button"
                 android:button="@android:color/transparent"
@@ -38,12 +38,11 @@
 
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
 
                 android:checked="true"
                 android:id="@+id/f2"
-                android:layout_gravity="center_horizontal"
                 android:gravity="center_vertical|center_horizontal"
                 android:focusableInTouchMode="true"
                 android:layout_weight="0"
@@ -51,11 +50,10 @@
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f3"
                 android:checked="true"
-                android:layout_gravity="center_horizontal"
                 android:gravity="center_vertical|center_horizontal"
                 android:focusableInTouchMode="true"
                 android:layout_weight="0"
@@ -66,16 +64,16 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
+            android:layout_height="42dp"
+            android:layout_weight="0.15"
             android:gravity="center_vertical|center_horizontal"
             android:layout_gravity="center_horizontal"
 
-            android:layout_marginTop="30dp">
+            >
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f4"
                 android:checked="true"
                 android:layout_weight="0"
@@ -84,8 +82,8 @@
                 android:button="@android:color/transparent" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f5"
                 android:checked="true"
 
@@ -95,8 +93,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f6"
                 android:checked="true"
 
@@ -109,16 +107,15 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
 
-            android:layout_weight="0.1"
+            android:layout_weight="0.15"
             android:gravity="center_vertical|center_horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp">
+            android:layout_gravity="center_horizontal">
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f7"
                 android:checked="true"
                 android:layout_weight="0"
@@ -127,8 +124,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f8"
                 android:checked="true"
                 android:layout_weight="0"
@@ -137,8 +134,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f9"
                 android:checked="true"
                 android:layout_weight="0"
@@ -146,8 +143,8 @@
                 android:button="@android:color/transparent"
                 android:focusableInTouchMode="true" />
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f10"
                 android:checked="true"
                 android:layout_weight="0"
@@ -156,8 +153,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f11"
                 android:checked="true"
                 android:layout_weight="0"
@@ -166,8 +163,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f12"
                 android:checked="true"
                 android:layout_weight="0"
@@ -175,8 +172,8 @@
                 android:button="@android:color/transparent"
                 android:focusableInTouchMode="true" />
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f13"
                 android:checked="true"
                 android:layout_weight="0"
@@ -189,15 +186,14 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
+            android:layout_height="42dp"
+            android:layout_weight="0.15"
             android:gravity="center_vertical|center_horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp">
+            android:layout_gravity="center_horizontal">
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f14"
                 android:checked="true"
                 android:layout_weight="0"
@@ -206,8 +202,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f15"
                 android:checked="true"
                 android:layout_weight="0"
@@ -216,8 +212,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f16"
                 android:checked="true"
                 android:layout_weight="0"
@@ -225,8 +221,8 @@
                 android:button="@android:color/transparent"
                 android:focusableInTouchMode="true" />
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f17"
                 android:checked="false"
                 android:layout_weight="0"
@@ -238,8 +234,8 @@
                 </RadioButton>
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f18"
                 android:checked="true"
                 android:layout_weight="0"
@@ -248,8 +244,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f19"
                 android:checked="true"
                 android:layout_weight="0"
@@ -257,8 +253,8 @@
                 android:button="@android:color/transparent"
                 android:focusableInTouchMode="true" />
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f20"
                 android:checked="true"
                 android:layout_weight="0"
@@ -270,15 +266,14 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
+            android:layout_height="42dp"
+            android:layout_weight="0.15"
             android:gravity="center_vertical|center_horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp">
+            android:layout_gravity="center_horizontal">
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f21"
                 android:checked="true"
                 android:layout_weight="0"
@@ -287,8 +282,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f22"
                 android:checked="true"
                 android:layout_weight="0"
@@ -297,8 +292,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f23"
                 android:checked="true"
                 android:layout_weight="0"
@@ -306,8 +301,8 @@
                 android:button="@android:color/transparent"
                 android:focusableInTouchMode="true" />
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f24"
                 android:checked="true"
                 android:layout_weight="0"
@@ -316,8 +311,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f25"
                 android:checked="true"
                 android:layout_weight="0"
@@ -326,8 +321,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f26"
                 android:checked="true"
                 android:layout_weight="0"
@@ -335,8 +330,8 @@
                 android:button="@android:color/transparent"
                 android:focusableInTouchMode="true" />
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f27"
                 android:checked="true"
                 android:layout_weight="0"
@@ -348,16 +343,16 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
+            android:layout_height="42dp"
+            android:layout_weight="0.15"
             android:gravity="center_vertical|center_horizontal"
             android:layout_gravity="center_horizontal"
 
-            android:layout_marginTop="30dp">
+            >
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f28"
                 android:checked="true"
 
@@ -367,8 +362,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f29"
                 android:checked="true"
                 android:background="@drawable/custom_radio_button"
@@ -377,8 +372,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f30"
                 android:checked="true"
 
@@ -391,16 +386,16 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
+            android:layout_height="42dp"
+            android:layout_weight="0.15"
             android:gravity="center_vertical|center_horizontal"
             android:layout_gravity="center_horizontal"
 
-            android:layout_marginTop="30dp">
+            >
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f31"
                 android:checked="true"
 
@@ -410,8 +405,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f32"
                 android:checked="true"
 
@@ -421,8 +416,8 @@
                 android:focusableInTouchMode="true" />
 
             <RadioButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:id="@+id/f33"
                 android:checked="true"
 
@@ -431,16 +426,16 @@
                 android:layout_weight="0"
                 android:focusableInTouchMode="true" />
         </LinearLayout>
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_gravity="center_horizontal"
             ads:adSize="BANNER"
             ads:adUnitId="@string/banner_ad_unit_id"
-            >
+            android:layout_gravity="center_horizontal">
         </com.google.android.gms.ads.AdView>
     </LinearLayout>
 

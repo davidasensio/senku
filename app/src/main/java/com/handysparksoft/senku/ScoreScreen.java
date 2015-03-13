@@ -9,13 +9,19 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.TreeSet;
 
 
 public class ScoreScreen extends ActionBarActivity {
+
     TreeSet<String> scores;
+
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,11 @@ public class ScoreScreen extends ActionBarActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row_layout,new ArrayList<>(scores.descendingSet()));
         listView.setAdapter(adapter);
+
+        adView = (AdView) findViewById(R.id.adView2);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
 
