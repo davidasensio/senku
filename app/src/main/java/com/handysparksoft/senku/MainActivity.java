@@ -60,15 +60,6 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        adView = (AdView) findViewById(R.id.adView);
-
-//        adView = new AdView(this);
-//        adView.setAdSize(com.google.android.gms.ads.AdSize.BANNER);
-//        adView.setAdUnitId(getString(R.string.banner_ad_unit_id));
-
-        //AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("8DBB3294399A59F966A4B5694A8563CF").build();
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
 
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         game = new Game();
@@ -80,7 +71,11 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         game.restartTimer();
         scores = getScores();
 
-
+        //Publicidad
+        adView = (AdView) findViewById(R.id.adView);
+        //AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("8DBB3294399A59F966A4B5694A8563CF").build();
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     @Override
@@ -123,7 +118,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
                     @Override
                     public void run() {
                         String seconds = game.getTimeFormatted();
-                        txtTime.setText("Time: " + seconds);
+                        txtTime.setText(getString(R.string.time) +" "+ seconds);
                     }
                 });
             }
@@ -134,27 +129,29 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     public void onFocusChange(View v, boolean hasFocus) {
 
     //public void onClick(View v) {
-        RadioButton rdbSelected = ((RadioButton) v);
-        int id = rdbSelected.getId();
+        if (hasFocus) {
+            RadioButton rdbSelected = ((RadioButton) v);
+            int id = rdbSelected.getId();
 
-        for (int i=0;i<SIZE;i++) {
-            for (int j = 0; j < SIZE; j++) {
-                if (ids[i][j] == id) {
-                    Boolean right = game.play(i, j);
-                    setBackgroudColor(v);
-                    if (right == true) {
-                        vibrator.vibrate(25);
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    if (ids[i][j] == id) {
+                        Boolean right = game.play(i, j);
+                        setBackgroudColor(v);
+                        if (right == true) {
+                            vibrator.vibrate(25);
+                        }
+                        break;
                     }
-                    break;
                 }
             }
-        }
 
-        setFigureFromGrid();
-        if (game.isGameFinished()) {
-            Toast.makeText(this, R.string.game_over,Toast.LENGTH_LONG).show();
-            game.pauseTimer();
-            updateScores();
+            setFigureFromGrid();
+            if (game.isGameFinished()) {
+                Toast.makeText(this, getString(R.string.game_over), Toast.LENGTH_LONG).show();
+                game.pauseTimer();
+                updateScores();
+            }
         }
     }
 
@@ -248,7 +245,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
             }
         }
 
-        ((TextView) findViewById(R.id.txtScore)).setText("Score: " + game.getScore());
+        ((TextView) findViewById(R.id.txtScore)).setText(getString(R.string.score) + " " +game.getScore());
     }
 
     private void restart() {

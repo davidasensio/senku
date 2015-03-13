@@ -41,7 +41,7 @@ public class Game {
     private Date initTime;
     private Timer timer;
     private Boolean paused = false;
-    private final int BASE_POINTS = 25;
+    private final int BASE_POINTS = 35;
     private LinkedList<String> stack;
 
 
@@ -148,8 +148,8 @@ public class Game {
 
     private long addScore() {
 
-        int penalty = (int)(getTime() / 10);
-        score += BASE_POINTS - (penalty < 25 ? penalty : BASE_POINTS - 1);
+        int penalty = (int)(getTime() / 5);
+        score += BASE_POINTS - (penalty < BASE_POINTS ? penalty : BASE_POINTS - 1);
         return score;
     }
     private long susScore() {
@@ -189,7 +189,7 @@ public class Game {
             for (int j=0;j<SIZE;j++) {
                 if (grid[i][j] == 1) {
                     int rndNumber = new Random().nextInt(10);
-                    if (rndNumber > 7) {
+                    if (rndNumber > 5) {
                         grid[i][j] = 0;
                     }
                 }
