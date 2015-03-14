@@ -18,7 +18,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeSet;
@@ -43,6 +45,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     TextView txtTime;
     Vibrator vibrator;
     private TreeSet<String> scores;
+    private boolean isSolution = false;
 
     private final int ids[][] = {
             {0,0, R.id.f1,R.id.f2,R.id.f3,0,0},
@@ -54,13 +57,17 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
             {0,0,R.id.f31,R.id.f32,R.id.f33,0,0},
     };
 
+    private String solution[]={"f29-f17","f26-f24","f33-f25","f31-f33","f18-f30","f33-f25","f6-f18","f13-f11","f27-f13"
+            ,"f10-f12","f13-f11","f8-f10","f1-f9","f3-f1","f16-f4","f1-f9","f28-f16","f21-f23","f7-f21","f24-f22"
+            ,"f21-f23","f10-f8","f8-f22","f22-f24","f24-f26","f26-f12","f12-f10","f17-f15","f5-f17","f18-f16","f15-f17"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        isSolution = false;
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         game = new Game();
         registerListeners();
@@ -101,6 +108,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
 
     @Override
     protected void onRestart() {
+        isSolution = false;
         startTimer();
         super.onRestart();
     }
@@ -129,7 +137,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     public void onFocusChange(View v, boolean hasFocus) {
 
     //public void onClick(View v) {
-        if (hasFocus) {
+        if (hasFocus && !isSolution) {
             RadioButton rdbSelected = ((RadioButton) v);
             int id = rdbSelected.getId();
 
@@ -156,12 +164,14 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     }
 
     private void updateScores() {
-        Long maxScore = getMaxScore();
-        if (game.getScore() > maxScore) {
-            String msg = getResources().getString(R.string.record) + " ("+game.getScore()+")";
-            Toast.makeText(this, msg , Toast.LENGTH_LONG).show();
+        if (!isSolution) {
+            Long maxScore = getMaxScore();
+            if (game.getScore() > maxScore) {
+                String msg = getResources().getString(R.string.record) + " (" + game.getScore() + ")";
+                Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+            }
+            addScore();
         }
-        addScore();
     }
 
     public Long getMaxScore() {
@@ -249,12 +259,14 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     }
 
     private void restart() {
+        isSolution = false;
         game = new Game();
         setFigureFromGrid();
         ((RadioButton)findViewById(R.id.f17)).requestFocus();
     }
 
     private void random() {
+        isSolution = false;
         game = new Game();
         game.random();
         setFigureFromGrid();
@@ -269,6 +281,70 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     private void showScores() {
        Intent intent = new Intent(this, ScoreScreen.class);
         startActivity(intent);
+    }
+
+    private void playMove(String move) {
+        int i1=-1,j1=-1,i2=-1,j2=-1;
+        String view1 = move.split("-")[0];
+        String view2 = move.split("-")[1];
+
+        for(int i=0;i<SIZE;i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (ids[i][j] != 0) {
+                    if (ids[i][j] == getResources().getIdentifier(view1,"id",this.getPackageName())) {
+                        i1 = i;
+                        j1 = j;
+                        //((RadioButton)findViewById(getResources().getIdentifier(view1,"id",this.getPackageName()))).setSelected(true);
+
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        for(int i=0;i<SIZE;i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (ids[i][j] != 0) {
+                    if (ids[i][j] == getResources().getIdentifier(view2,"id",this.getPackageName())) {
+                        i2 = i;
+                        j2 = j;
+                    }
+                }
+            }
+        }
+
+        game.play(i1,j1);
+        game.play(i2,j2);
+    }
+
+    private void resolve() {
+        restart();
+        final LinkedList<String> llSolution= new LinkedList<>(Arrays.asList(solution));
+
+        Timer timerResolve = new Timer();
+        timerResolve.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String nextMove = llSolution.pollFirst();
+                            if (nextMove != null) {
+                                playMove(nextMove);
+                                setFigureFromGrid();
+                            }else {
+                                timer = null;
+                            }
+                        }
+                    });
+                }
+            },750,750);
+
+
+
     }
 
     @Override
@@ -302,6 +378,12 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
 
         if (id == R.id.action_undo) {
             undo();
+            return true;
+        }
+
+        if (id == R.id.action_resolve) {
+            isSolution = true;
+            resolve();
             return true;
         }
 

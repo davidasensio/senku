@@ -9,4 +9,6 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_settings" android:title="@string/action_settings" android:icon="@drawable/common_full_open_on_phone"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_resolve" android:title="@string/action_resolve" android:icon="@drawable/common_full_open_on_phone"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>
