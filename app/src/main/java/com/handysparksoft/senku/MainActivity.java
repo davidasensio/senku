@@ -68,6 +68,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //setContentView(R.layout.screen_circle);
 
         isSolution = false;
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);

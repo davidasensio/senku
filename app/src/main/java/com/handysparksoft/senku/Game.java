@@ -14,17 +14,7 @@ public class Game {
     private enum State {READY_TO_PICK, READY_TO_DROP, FINISHED}
     private State gameState;
     private final int SIZE = 7;
-    private final int[][] CROSS = {
-        {0,0,1,1,1,0,0},
-        {0,0,1,1,1,0,0},
-        {1,1,1,1,1,1,1},
-        {1,1,1,0,1,1,1},
-        {1,1,1,1,1,1,1},
-        {0,0,1,1,1,0,0},
-        {0,0,1,1,1,0,0}
-    };
-
-    private final int[][] BOARD = {
+    private int[][] BOARD = {
             {0,0,1,1,1,0,0},
             {0,0,1,1,1,0,0},
             {1,1,1,1,1,1,1},
@@ -33,6 +23,7 @@ public class Game {
             {0,0,1,1,1,0,0},
             {0,0,1,1,1,0,0}
     };
+
     private int[][] grid;
     private int pickedI, pickedJ;
     private int jumpedI, jumpedJ;
@@ -43,14 +34,51 @@ public class Game {
     private Boolean paused = false;
     private final int BASE_POINTS = 100;
     private LinkedList<String> stack;
+    private final int[][] CROSS = {
+            {0,0,1,1,1,0,0},
+            {0,0,1,1,1,0,0},
+            {1,1,1,1,1,1,1},
+            {1,1,1,0,1,1,1},
+            {1,1,1,1,1,1,1},
+            {0,0,1,1,1,0,0},
+            {0,0,1,1,1,0,0}
+    };
+    private final int[][] CRUZ = {
+            {0,0,0,1,0,0,0},
+            {0,0,0,1,0,0,0},
+            {0,1,1,1,1,1,0},
+            {0,0,0,1,0,0,0},
+            {0,0,0,1,0,0,0},
+            {0,0,1,1,1,0,0},
+            {0,0,1,1,1,0,0}
+    };
 
+    private int[][] selectedTable = CROSS;
+    private final static int TABLE_CROSS = 1;
+    private final static int TABLE_CRUZ = 2;
 
     public Game() {
+        this(TABLE_CROSS);
+    }
+    public Game(int tableType) {
+        switch (tableType) {
+            case TABLE_CROSS:
+                selectedTable = CROSS;
+                break;
+            case TABLE_CRUZ:
+                selectedTable = CRUZ;
+                //FIXME: BOARD = CRUZ;
+                break;
+            default:
+                selectedTable = CROSS;
+                break;
+        }
+
         this.grid = new int[SIZE][SIZE];
 
         for (int i=0;i<SIZE;i++) {
             for (int j=0;j<SIZE;j++) {
-                grid[i][j] = CROSS[i][j];
+                grid[i][j] = selectedTable[i][j];
             }
         }
 
@@ -69,6 +97,8 @@ public class Game {
             }
         },1000,1000);
     }
+
+
 
     public void pauseTimer() {
         this.paused = true;
