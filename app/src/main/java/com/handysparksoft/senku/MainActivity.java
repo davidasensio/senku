@@ -1,6 +1,7 @@
 package com.handysparksoft.senku;
 
-import android.content.Intent;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -61,6 +62,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
             ,"f10-f12","f13-f11","f8-f10","f1-f9","f3-f1","f16-f4","f1-f9","f28-f16","f21-f23","f7-f21","f24-f22"
             ,"f21-f23","f10-f8","f8-f22","f22-f24","f24-f26","f26-f12","f12-f10","f17-f15","f5-f17","f18-f16","f15-f17"};
 
+    private FireBaseManager fireBaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +80,17 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         game.restartTimer();
         scores = getScores();
 
+        fireBaseManager = new FireBaseManager();
+        fireBaseManager.initFireBase(this);
+
         //Publicidad
         adView = (AdView) findViewById(R.id.adView);
         //AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("8DBB3294399A59F966A4B5694A8563CF").build();
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
     }
+
+
 
     @Override
     protected void onPause() {
@@ -153,7 +160,6 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
                     }
                 }
             }
-
             setFigureFromGrid();
             if (game.isGameFinished()) {
                 Toast.makeText(this, getString(R.string.game_over), Toast.LENGTH_LONG).show();
@@ -197,14 +203,16 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         this.scores = new TreeSet<String>(prefs.getStringSet("scores", new HashSet<String>()));
         if (!this.scores.contains(String.valueOf(game.getScore()))) {
             this.scores.add(String.format("%03d", game.getScore()));
-            if (this.scores.size()> 10) {
+            if (this.scores.size() > 10) {
 
                 ArrayList<String> treeList = new ArrayList<String>(this.scores.descendingSet());
                 this.scores = new TreeSet<String>(treeList.subList(0,9));
             }
             prefs.edit().putStringSet("scores", this.scores).commit();
-        }
 
+            String maxScore = this.scores.last();
+            fireBaseManager.storeUserScoreInFireBase(getFormattedUserAccount(), maxScore);
+        }
     }
 
     private void setBackgroudColor(View v) {
@@ -231,8 +239,14 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
             for (int j=0;j<SIZE;j++) {
                 if (ids[i][j] != 0) {
                     RadioButton rdb = (RadioButton) findViewById(ids[i][j]);
-                    //rdb.setOnClickListener(this);
+
                     rdb.setOnFocusChangeListener(this);
+                    rdb.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            setFigureFromGrid();
+                        }
+                    });
                 }
             }
         }
@@ -279,9 +293,34 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     }
 
     private void showScores() {
-       Intent intent = new Intent(this, ScoreScreen.class);
-        startActivity(intent);
+       //Intent intent = new Intent(this, ScoreScreen.class);
+       // startActivity(intent);
+        fireBaseManager.getUsersScoreFromFireBase(this);
     }
+
+    private String getUserAccount() {
+        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        Account[] list = manager.getAccounts();
+        String gmail = null;
+
+        for(Account account: list){
+            if(account.type.equalsIgnoreCase("com.google")) {
+                gmail = account.name;
+                break;
+            }
+        }
+        //showSortMsg(gmail);
+        return gmail;
+    }
+
+    private String getFormattedUserAccount() {
+        String result = getUserAccount();
+        result = result.split("@")[0];
+        result = result.replaceAll("\\.", "_").replaceAll("\\#","_").replaceAll("\\$", "_").replaceAll("\\[", "(").replaceAll("\\]", ")");
+        return result;
+    }
+
+
 
     private void playMove(String move) {
         int i1=-1,j1=-1,i2=-1,j2=-1;
@@ -352,6 +391,10 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    private void showSortMsg(String msg) {
+        Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

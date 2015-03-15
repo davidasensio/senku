@@ -9,9 +9,11 @@
     <string name="action_random">Random</string>
     <string name="action_undo">Undo</string>
     <string name="action_scores">Best Scores</string>
-    <string name="score">Score::</string>
+    <string name="score">Score:</string>
     <string name="time">Time:</string>
     <string name="action_resolve">Resolver</string>
+    <string name="topTen">Top ten</string>
+    <string name="ranking">Ranking</string>
 
     <!--Real banners
     <string name="banner_ad_unit_id">ca-app-pub-8877880174338104/1250036072</string>

@@ -14,6 +14,8 @@
         android:drawable="@drawable/ball_dark_green" />
     <item android:state_checked="false" android:state_focused="true"
         android:drawable="@drawable/hole_alpha"  />
+    <item android:state_checked="false" android:state_selected="true"
+        android:drawable="@drawable/hole_alpha"  />
     <item android:state_checked="true" android:drawable="@drawable/ball_dark_green" />
 
     <!--

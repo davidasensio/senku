@@ -35,14 +35,10 @@ public class ScoreScreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_screen);
 
-        ListView listView = (ListView)findViewById(R.id.listView);
+        //Fill score lists
+        fillListViewTopTen();
+        fillListViewRanking((ArrayList)this.getIntent().getExtras().getSerializable("array_list"));
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        scores = new TreeSet<String>(prefs.getStringSet("scores", new HashSet<String>()));
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row_layout,new ArrayList<>(scores.descendingSet()));
-        listView.setAdapter(adapter);
 
         ((Button)findViewById(R.id.btnBack)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +90,28 @@ public class ScoreScreen extends ActionBarActivity {
         mInterstitialAd.loadAd(adRequestBuilder.build());
 
     }
+
+    private void fillListViewTopTen() {
+        ListView listView = (ListView)findViewById(R.id.listView);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        scores = new TreeSet<String>(prefs.getStringSet("scores", new HashSet<String>()));
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row_layout,new ArrayList<>(scores.descendingSet()));
+        listView.setAdapter(adapter);
+    };
+
+    public void fillListViewRanking(ArrayList<String> scores) {
+        ListView listView = (ListView)findViewById(R.id.listView2);
+
+        //new FireBaseManager().getUsersScoreFromFireBase();
+
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row_layout,scores);
+        listView.setAdapter(adapter);
+    };
 
 
     @Override

@@ -12,6 +12,8 @@
     <string name="score">Puntuación:</string>
     <string name="time">Tiempo:</string>
     <string name="action_resolve">Resolver</string>
+    <string name="topTen">10 mejores</string>
+    <string name="ranking">Ranking general</string>
 
     <!--Real banners
     <string name="banner_ad_unit_id">ca-app-pub-8877880174338104/1250036072</string>
