@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class FireBaseManager {
     private final static String FIREBASE_URL_SENKU = "https://senku.firebaseio.com/";
-    private final static String FIREBASE_URL_SENKU_SCORES = "https://senku.firebaseio.com/scores/";
+    //private final static String FIREBASE_URL_SENKU_SCORES = "https://senku.firebaseio.com/scores/";
     Firebase rootRef;
     private Context context;
 
@@ -35,7 +35,7 @@ public class FireBaseManager {
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                System.out.println(snapshot.getValue());
+                //System.out.println(snapshot.getValue());
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {
@@ -75,9 +75,9 @@ public class FireBaseManager {
                         String key = it.next();
                         String value = (String)scoresMap.get(key);
 
-                        //if (key != "test") {
+                        if (!key.equals("test")) {
                         scores.add(value +" - " +key);
-                        //}
+                        }
                     }
                     Collections.sort(scores);
                     Collections.reverse(scores);
@@ -95,7 +95,7 @@ public class FireBaseManager {
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("The read failed: " + firebaseError.getMessage());
+                //System.out.println("The read failed: " + firebaseError.getMessage());
             }
         });
 

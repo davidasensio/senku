@@ -144,7 +144,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     public void onFocusChange(View v, boolean hasFocus) {
 
     //public void onClick(View v) {
-        if (hasFocus && !isSolution) {
+        if (!isSolution) {
             RadioButton rdbSelected = ((RadioButton) v);
             int id = rdbSelected.getId();
 
@@ -202,7 +202,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         this.scores = new TreeSet<String>(prefs.getStringSet("scores", new HashSet<String>()));
         if (!this.scores.contains(String.valueOf(game.getScore()))) {
-            this.scores.add(String.format("%03d", game.getScore()));
+            this.scores.add(String.format("%04d", game.getScore()));
             if (this.scores.size() > 10) {
 
                 ArrayList<String> treeList = new ArrayList<String>(this.scores.descendingSet());
