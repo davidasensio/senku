@@ -77,7 +77,12 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
 
         isSolution = false;
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        game = new Game();
+
+        //Prefs. Last Table
+        String lastTable = getLastTable();
+        currentTableGame = Game.TABLE_GAME.valueOf(lastTable);
+
+        game = new Game(currentTableGame);
         registerListeners();
         setFigureFromGrid();
 
@@ -96,7 +101,15 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         adView.loadAd(adRequest);
     }
 
+    private String getLastTable() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        return prefs.getString("lastTable", "CROSS");
+    }
 
+    private void saveLastTable(String lastTable) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        prefs.edit().putString("lastTable", lastTable).commit();
+    }
 
     @Override
     protected void onPause() {
@@ -115,6 +128,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
 
     @Override
     protected void onDestroy() {
+        saveLastTable(currentTableGame.toString());
         adView.destroy();
         super.onDestroy();
     }
@@ -123,11 +137,8 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     protected void onRestart() {
         isSolution = false;
         startTimer();
-        currentTableGame = Game.TABLE_GAME.CROSS;
         super.onRestart();
     }
-
-
 
     private void startTimer() {
         if (timer == null) {
@@ -218,7 +229,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
 
             String maxScore = this.scores.last();
             //fireBaseManager.storeUserScoreInFireBase(getFormattedUserAccount(), maxScore);
-            fireBaseManager.storeUserScoreInFireBase(getUserName(), maxScore);
+            fireBaseManager.storeUserScoreInFireBase(getUserNameOrFormattedAccount(), maxScore);
         }
     }
 
@@ -249,12 +260,12 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
 
                     rdb.setOnFocusChangeListener(this);
                     //rdb.setOnClickListener(this);
-                    /*rdb.setOnClickListener(new View.OnClickListener() {
+                    rdb.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             setFigureFromGrid();
                         }
-                    });*/
+                    });
                 }
             }
         }
@@ -326,7 +337,6 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
                 break;
             }
         }
-        //showSortMsg(gmail);
         return gmail;
     }
 
@@ -373,8 +383,14 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         return result;
     }
 
-
-
+    //Si no encuentra el UserName usa la UserAccount
+    public String getUserNameOrFormattedAccount() {
+        String result = getUserName();
+        if (result == null || result == "" || result.length() == 0) {
+            result = getFormattedUserAccount();
+        }
+        return result;
+    }
 
     private void playMove(String move) {
         int i1=-1,j1=-1,i2=-1,j2=-1;
@@ -435,9 +451,6 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
                     });
                 }
             },750,750);
-
-
-
     }
 
     public void selectTableGame() {
