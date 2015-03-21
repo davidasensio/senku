@@ -17,6 +17,7 @@
     <string name="ranking">Ranking</string>
     <string name="back">Back</string>
 
+    <string name="title_activity_table_game_selector">TableGameSelectorActivity</string>
     <string name="table_game_selector">Select table game</string>
     <array name="table_game">
         <item>CROSS</item>
@@ -35,7 +36,7 @@
     <string name="banner_ad_unit_id">ca-app-pub-8877880174338104/4692696878</string>
     <string name="banner_ad_unit_id2">ca-app-pub-8877880174338104/2856036872</string>
     <string name="banner_ad_unit_id3_intersticial">ca-app-pub-8877880174338104/5528471679</string>
-    <string name="title_activity_table_game_selector">TableGameSelectorActivity</string>
+
 
     <!-- Test banner
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>

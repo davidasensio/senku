@@ -17,6 +17,7 @@
     <string name="ranking">Ranking general</string>
     <string name="back">Volver</string>
 
+    <string name="title_activity_table_game_selector">TableGameSelectorActivity</string>
     <string name="table_game_selector">Selecciona tablero</string>
     <array name="table_game">
         <item>CROSS</item>

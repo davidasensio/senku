@@ -4,9 +4,11 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -215,7 +217,8 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
             prefs.edit().putStringSet("scores", this.scores).commit();
 
             String maxScore = this.scores.last();
-            fireBaseManager.storeUserScoreInFireBase(getFormattedUserAccount(), maxScore);
+            //fireBaseManager.storeUserScoreInFireBase(getFormattedUserAccount(), maxScore);
+            fireBaseManager.storeUserScoreInFireBase(getUserName(), maxScore);
         }
     }
 
@@ -349,14 +352,27 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         return resultAccount;
     }
 
-    /*
+
     private String getUserName() {
-        Account account = getMainUserAccount();
-        AccountManager am = (AccountManager) getSystemService(ACCOUNT_SERVICE);
-        am.getAuthToken(account, "g", null, this, null);
-        return am.getUserData(account, AccountManager.KEY_ACCOUNT_NAME);
+        String result = "";
+        Cursor c = this.getContentResolver().query(ContactsContract.Profile.CONTENT_URI, null, null, null, null);
+        int count = c.getCount();
+        String[] columnNames = c.getColumnNames();
+        boolean b = c.moveToFirst();
+        int position = c.getPosition();
+        if (count == 1 && position == 0) {
+            for (int j = 0; j < columnNames.length; j++) {
+                String columnName = columnNames[j];
+                if (columnName.equals(ContactsContract.Contacts.DISPLAY_NAME)) {
+                    String columnValue = c.getString(c.getColumnIndex(columnName));
+                    result = columnValue;
+                }
+            }
+        }
+        c.close();
+        return result;
     }
-    */
+
 
 
 
@@ -434,10 +450,10 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             //Table Game Selector
-            String result = data.getStringExtra("result");
-
-            restart(Game.TABLE_GAME.valueOf(result));
-
+            if (data != null) {
+                String result = data.getStringExtra("result");
+                restart(Game.TABLE_GAME.valueOf(result));
+            }
         }
     }
 

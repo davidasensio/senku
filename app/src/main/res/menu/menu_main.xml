@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_undo" android:title="@string/action_undo"
         android:orderInCategory="100" app:showAsAction="ifRoom" android:icon="@android:drawable/ic_media_previous"/>
-    <item android:id="@+id/action_scores" android:title="@string/action_scores" android:icon="@drawable/abc_btn_radio_to_on_mtrl_015"
+    <item android:id="@+id/action_scores" android:title="@string/action_scores" android:icon="@drawable/ic_canica"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_select_table_game" android:title="@string/action_select_table_game" android:icon="@drawable/abc_btn_radio_to_on_mtrl_015"
         android:orderInCategory="100" app:showAsAction="never" />
