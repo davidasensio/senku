@@ -11,6 +11,7 @@ import java.util.TimerTask;
  */
 public class Game {
 
+    public enum TABLE_GAME {CROSS ,LIGHT_CROSS, EIGHT, BIG_EIGHT, ARROW, DIAMOND, RHOMBUS };
     private enum State {READY_TO_PICK, READY_TO_DROP, FINISHED}
     private State gameState;
     private final int SIZE = 7;
@@ -32,6 +33,7 @@ public class Game {
     private Date initTime;
     private Timer timer;
     private Boolean paused = false;
+    private Boolean gameStarted = false;
     private final int BASE_POINTS = 100;
     private LinkedList<String> stack;
     private final int[][] CROSS = {
@@ -43,7 +45,7 @@ public class Game {
             {0,0,1,1,1,0,0},
             {0,0,1,1,1,0,0}
     };
-    private final int[][] CRUZ = {
+    private final int[][] LIGHT_CROSS = {
             {0,0,0,1,0,0,0},
             {0,0,0,1,0,0,0},
             {0,1,1,1,1,1,0},
@@ -52,22 +54,82 @@ public class Game {
             {0,0,1,1,1,0,0},
             {0,0,1,1,1,0,0}
     };
+    private final int[][] EIGHT = {
+            {0,0,0,0,0,0,0},
+            {0,0,1,1,1,0,0},
+            {0,0,1,0,1,0,0},
+            {0,0,1,1,1,0,0},
+            {0,0,1,0,1,0,0},
+            {0,0,1,1,1,0,0},
+            {0,0,0,0,0,0,0}
+    };
+    private final int[][] BIG_EIGHT = {
+            {0,0,0,0,0,0,0},
+            {0,0,1,1,1,0,0},
+            {0,1,1,0,1,1,0},
+            {0,1,1,1,1,1,0},
+            {0,1,1,0,1,1,0},
+            {0,0,1,1,1,0,0},
+            {0,0,0,0,0,0,0}
+    };
+    private final int[][] ARROW = {
+            {0,0,0,1,0,0,0},
+            {0,0,1,1,1,0,0},
+            {0,1,1,1,1,1,0},
+            {1,1,1,0,1,1,1},
+            {1,1,1,1,1,1,1},
+            {0,0,1,1,1,0,0},
+            {0,0,1,1,1,0,0}
+    };
+    private final int[][] RHOMBUS = {
+            {0,0,0,1,0,0,0},
+            {0,0,1,1,1,0,0},
+            {0,1,1,0,1,1,0},
+            {1,1,0,0,0,1,1},
+            {0,1,1,0,1,1,0},
+            {0,0,1,1,1,0,0},
+            {0,0,0,1,0,0,0}
+    };
+    private final int[][] DIAMOND = {
+            {0,0,0,0,0,0,0},
+            {0,0,0,1,0,0,0},
+            {0,0,1,1,1,0,0},
+            {0,0,1,1,1,0,0},
+            {0,0,1,1,1,0,0},
+            {0,0,0,1,0,0,0},
+            {0,0,0,0,0,0,0}
+    };
+
 
     private int[][] selectedTable = CROSS;
-    private final static int TABLE_CROSS = 1;
-    private final static int TABLE_CRUZ = 2;
+
 
     public Game() {
-        this(TABLE_CROSS);
+        this(TABLE_GAME.ARROW);
     }
-    public Game(int tableType) {
-        switch (tableType) {
-            case TABLE_CROSS:
+
+    public Game(TABLE_GAME table_game) {
+        switch (table_game) {
+            case CROSS:
                 selectedTable = CROSS;
                 break;
-            case TABLE_CRUZ:
-                selectedTable = CRUZ;
-                //FIXME: BOARD = CRUZ;
+            case LIGHT_CROSS:
+                selectedTable = LIGHT_CROSS;
+                break;
+            case EIGHT:
+                selectedTable = EIGHT;
+                break;
+            case BIG_EIGHT:
+                selectedTable = BIG_EIGHT;
+                break;
+            case ARROW:
+                selectedTable = ARROW;
+                break;
+            case RHOMBUS:
+                selectedTable = RHOMBUS;
+                break;
+            case DIAMOND:
+                selectedTable = DIAMOND;
                 break;
             default:
                 selectedTable = CROSS;
@@ -82,6 +144,7 @@ public class Game {
             }
         }
 
+        gameStarted = false;
         gameState = State.READY_TO_PICK;
         initTime = new Date();
         paused = false;
@@ -91,7 +154,7 @@ public class Game {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (!paused) {
+                if (gameStarted && !paused) {
                     secondCounter++;
                 }
             }
@@ -154,6 +217,7 @@ public class Game {
             gameState = State.READY_TO_DROP;
         }else if (gameState == State.READY_TO_DROP) {
             if (isAvailable(pickedI, pickedJ, i, j)) {
+                gameStarted = true;
                 gameState = State.READY_TO_PICK;
                 grid[pickedI][pickedJ] = 0;
                 grid[jumpedI][jumpedJ] = 0;

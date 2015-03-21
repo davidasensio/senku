@@ -4,16 +4,29 @@
     <string name="hello_world">Hola mundo!</string>
     <string name="game_over">¡El juego ha acabado!</string>
     <string name="record">¡Has batido nuevo record!</string>
-    <string name="title_activity_score_screen">Pantalla de puntos</string>
+    <string name="title_activity_score_screen">Puntuaciones</string>
     <string name="action_settings">Empezar</string>
     <string name="action_random">Aleatorio</string>
     <string name="action_undo">Deshacer</string>
-    <string name="action_scores">Mejores puntuaciones</string>
+    <string name="action_scores">Mejores puntuaciones...</string>
+    <string name="action_select_table_game">Seleccionar tablero...</string>
     <string name="score">Puntuación:</string>
     <string name="time">Tiempo:</string>
     <string name="action_resolve">Resolver</string>
     <string name="topTen">10 mejores</string>
     <string name="ranking">Ranking general</string>
+    <string name="back">Volver</string>
+
+    <string name="table_game_selector">Selecciona tablero</string>
+    <array name="table_game">
+        <item>CROSS</item>
+        <item>LIGHT_CROSS</item>
+        <item>EIGHT</item>
+        <item>BIG_EIGHT</item>
+        <item>ARROW</item>
+        <item>DIAMOND</item>
+        <item>RHOMBUS</item>
+    </array>
 
     <!--Real banners
     <string name="banner_ad_unit_id">ca-app-pub-8877880174338104/1250036072</string>

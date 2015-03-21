@@ -8,12 +8,25 @@
     <string name="action_settings">Restart</string>
     <string name="action_random">Random</string>
     <string name="action_undo">Undo</string>
-    <string name="action_scores">Best Scores</string>
+    <string name="action_scores">Best Scores...</string>
+    <string name="action_select_table_game">Select table game...</string>
     <string name="score">Score:</string>
     <string name="time">Time:</string>
     <string name="action_resolve">Resolver</string>
     <string name="topTen">Top ten</string>
     <string name="ranking">Ranking</string>
+    <string name="back">Back</string>
+
+    <string name="table_game_selector">Select table game</string>
+    <array name="table_game">
+        <item>CROSS</item>
+        <item>LIGHT_CROSS</item>
+        <item>EIGHT</item>
+        <item>BIG_EIGHT</item>
+        <item>ARROW</item>
+        <item>DIAMOND</item>
+        <item>RHOMBUS</item>
+    </array>
 
     <!--Real banners
     <string name="banner_ad_unit_id">ca-app-pub-8877880174338104/1250036072</string>
@@ -22,6 +35,7 @@
     <string name="banner_ad_unit_id">ca-app-pub-8877880174338104/4692696878</string>
     <string name="banner_ad_unit_id2">ca-app-pub-8877880174338104/2856036872</string>
     <string name="banner_ad_unit_id3_intersticial">ca-app-pub-8877880174338104/5528471679</string>
+    <string name="title_activity_table_game_selector">TableGameSelectorActivity</string>
 
     <!-- Test banner
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>

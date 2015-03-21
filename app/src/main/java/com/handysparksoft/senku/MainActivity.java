@@ -2,6 +2,7 @@ package com.handysparksoft.senku;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -43,10 +44,12 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     static final int SIZE = 7;
     com.handysparksoft.senku.Game game;
     Timer timer;
+    Timer timerResolve;
     TextView txtTime;
     Vibrator vibrator;
     private TreeSet<String> scores;
     private boolean isSolution = false;
+    private Game.TABLE_GAME currentTableGame = Game.TABLE_GAME.CROSS;
 
     private final int ids[][] = {
             {0,0, R.id.f1,R.id.f2,R.id.f3,0,0},
@@ -118,6 +121,7 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     protected void onRestart() {
         isSolution = false;
         startTimer();
+        currentTableGame = Game.TABLE_GAME.CROSS;
         super.onRestart();
     }
 
@@ -143,7 +147,6 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-
     //public void onClick(View v) {
         if (!isSolution) {
             RadioButton rdbSelected = ((RadioButton) v);
@@ -153,8 +156,8 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
                 for (int j = 0; j < SIZE; j++) {
                     if (ids[i][j] == id) {
                         Boolean right = game.play(i, j);
-                        setBackgroudColor(v);
                         if (right == true) {
+                            setBackgroudColor(v);
                             vibrator.vibrate(25);
                         }
                         break;
@@ -242,12 +245,13 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
                     RadioButton rdb = (RadioButton) findViewById(ids[i][j]);
 
                     rdb.setOnFocusChangeListener(this);
-                    rdb.setOnClickListener(new View.OnClickListener() {
+                    //rdb.setOnClickListener(this);
+                    /*rdb.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             setFigureFromGrid();
                         }
-                    });
+                    });*/
                 }
             }
         }
@@ -273,9 +277,18 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         ((TextView) findViewById(R.id.txtScore)).setText(getString(R.string.score) + " " +game.getScore());
     }
 
-    private void restart() {
+    private void restart(Game.TABLE_GAME tableGame) {
         isSolution = false;
-        game = new Game();
+        if (timerResolve != null) {
+            timerResolve.cancel();
+            timerResolve = null;
+        }
+        if (tableGame == null) {
+            tableGame = currentTableGame;
+        }else {
+            currentTableGame = tableGame;
+        }
+        game = new Game(tableGame);
         setFigureFromGrid();
         ((RadioButton)findViewById(R.id.f17)).requestFocus();
     }
@@ -321,6 +334,30 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
         return result;
     }
 
+    private Account getMainUserAccount() {
+        Account resultAccount = null;
+        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        Account[] list = manager.getAccounts();
+
+        for(Account account: list){
+            if(account.type.equalsIgnoreCase("com.google")) {
+                resultAccount = account;
+                break;
+            }
+        }
+
+        return resultAccount;
+    }
+
+    /*
+    private String getUserName() {
+        Account account = getMainUserAccount();
+        AccountManager am = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        am.getAuthToken(account, "g", null, this, null);
+        return am.getUserData(account, AccountManager.KEY_ACCOUNT_NAME);
+    }
+    */
+
 
 
     private void playMove(String move) {
@@ -361,10 +398,10 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     }
 
     private void resolve() {
-        restart();
+        restart(Game.TABLE_GAME.CROSS);
         final LinkedList<String> llSolution= new LinkedList<>(Arrays.asList(solution));
 
-        Timer timerResolve = new Timer();
+        timerResolve = new Timer();
         timerResolve.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
@@ -387,6 +424,23 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
 
     }
 
+    public void selectTableGame() {
+        Intent intent = new Intent(this, TableGameSelectorActivity.class);
+         startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            //Table Game Selector
+            String result = data.getStringExtra("result");
+
+            restart(Game.TABLE_GAME.valueOf(result));
+
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -407,11 +461,16 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            restart();
+            restart(null);
             return true;
         }
         if (id == R.id.action_scores) {
             showScores();
+            return true;
+        }
+
+        if (id == R.id.action_select_table_game) {
+            selectTableGame();
             return true;
         }
 

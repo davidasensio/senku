@@ -1,6 +1,7 @@
 package com.handysparksoft.senku;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -8,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -65,9 +67,8 @@ public class ScoreScreen extends ActionBarActivity {
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
-                //Toast.makeText(ScoreScreen.this,                 "The interstitial is loaded", Toast.LENGTH_SHORT).show();
-                if (new Random().nextInt(10) > 3) {
-
+                //Load interstitial 60% times
+                if (new Random().nextInt(10) > 6) {
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -111,6 +112,23 @@ public class ScoreScreen extends ActionBarActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row_layout,scores);
         listView.setAdapter(adapter);
+
+
+        listView.setItemsCanFocus(true);
+        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                view.setBackgroundColor(Color.RED);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        listView.setItemChecked(2, true);
+
     };
 
 
